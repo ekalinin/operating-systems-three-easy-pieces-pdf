@@ -11,4 +11,4 @@ $ open ostep.pdf
 
 # Requirements
 
-Pyhton 3.8
+Python 3.8
