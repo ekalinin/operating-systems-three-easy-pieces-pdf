@@ -8,3 +8,7 @@ Tool for single pdf creation from http://ostep.org
 $ make
 $ open ostep.pdf
 ```
+
+# Requirements
+
+Pyhton 3.8
