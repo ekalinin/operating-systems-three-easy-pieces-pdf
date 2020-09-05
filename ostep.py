@@ -112,7 +112,7 @@ class Book:
         merger.addMetadata({
             '/Author': 'Remzi Arpaci-Dusseau, Andrea Arpaci-Dusseau',
             '/Creator': 'Eugene Kalinin',
-            '/Producer': 'https://github.com/ekalinin/ostep.py',
+            '/Producer': 'https://github.com/ekalinin/operating-systems-three-easy-pieces',
             '/Title': 'Operating Systems: Three Easy Pieces',
             '/CreationDate': dt,
             '/ModDate': dt,
