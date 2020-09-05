@@ -1,4 +1,3 @@
-import os
 import sys
 import threading
 import logging
@@ -6,11 +5,11 @@ import datetime
 from collections import namedtuple
 from functools import cached_property
 from pathlib import Path
-from pdfminer.high_level import extract_text
 
 import bs4
 import requests
-from PyPDF2 import PdfFileMerger, PdfFileReader
+from PyPDF2 import PdfFileMerger
+from pdfminer.high_level import extract_text
 
 # logging setup
 logger = logging.getLogger(__name__)
@@ -18,6 +17,7 @@ logger.setLevel(logging.INFO)
 ch = logging.StreamHandler(sys.stdout)
 ch.setFormatter(logging.Formatter('%(asctime)-15s: %(message)s'))
 logger.addHandler(ch)
+
 
 Chapter = namedtuple('Chapter', ['order', 'url', 'filename'])
 
@@ -34,7 +34,7 @@ class Book:
     def hardcoded_chapters(self) -> [Chapter]:
         return [
             Chapter(1, "preface.pdf", "preface.pdf"),
-            Chapter(2, "toc.pdf", "toc.pdf" ),
+            Chapter(2, "toc.pdf", "toc.pdf"),
         ]
 
     @cached_property
@@ -43,7 +43,7 @@ class Book:
         response = requests.get(self.book_url)
         response.raise_for_status()
         logger.info('getting index page: %s - done. response: %s',
-            self.book_url, response)
+                    self.book_url, response)
         return response.text
 
     @cached_property
@@ -67,6 +67,7 @@ class Book:
 
     def download_chapters(self):
         logger.info('download chapters ...')
+
         def download(ch: Chapter):
             url = f'{self.url}/{ch.url}'
             logger.info(' ... downloading: %s', url)
@@ -75,8 +76,7 @@ class Book:
 
             if response.ok:
                 file_name = f"{self.output_dir}/{ch.order:03d}-{ch.filename}"
-                logger.info(' ... downloading: %s - done. saving into: %s',
-                    url, file_name)
+                logger.info(' saving into: %s', file_name)
                 with open(f"{file_name}", "wb") as f:
                     f.write(response.content)
 
