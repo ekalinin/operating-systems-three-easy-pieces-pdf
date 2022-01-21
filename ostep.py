@@ -24,7 +24,7 @@ Chapter = namedtuple('Chapter', ['order', 'url', 'filename'])
 
 class Book:
 
-    url: str = "http://pages.cs.wisc.edu/~remzi/OSTEP"
+    url: str = "https://pages.cs.wisc.edu/~remzi/OSTEP"
     book_url: str = f'{url}/'
     timeout: int = 180
     output_dir: str = './output'
