@@ -35,6 +35,14 @@ class Book:
         return [
             Chapter(1, "preface.pdf", "preface.pdf"),
             Chapter(2, "toc.pdf", "toc.pdf"),
+            Chapter(200, "dialogue-vmm.pdf", "dialogue-vmm.pdf"),
+            Chapter(201, "vmm-intro.pdf", "vmm-intro.pdf"),
+            Chapter(202, "dialogue-monitors.pdf", "dialogue-monitors.pdf"),
+            Chapter(203, "threads-monitors.pdf", "threads-monitors.pdf"),
+            Chapter(204, "dialogue-labs.pdf", "dialogue-labs.pdf"),
+            Chapter(205, "lab-tutorial.pdf", "lab-tutorial.pdf"),
+            Chapter(206, "lab-projects-systems.pdf", "lab-projects-systems.pdf"),
+            Chapter(207, "lab-projects-xv6.pdf", "lab-projects-xv6.pdf"),
         ]
 
     @cached_property
