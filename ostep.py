@@ -125,10 +125,19 @@ class Book:
             '/CreationDate': dt,
             '/ModDate': dt,
         })
+        curr_part = None
         for idx, pdf in enumerate(self.downloaded_chapters):
             bookmark = self.get_title_from_pdf(idx, pdf)
             logger.info(' ... idx=%d, pdf=%s, bookmark=%s', idx, pdf, bookmark)
-            merger.append(open(pdf, 'rb'), bookmark=bookmark)
+            curr_page = len(merger.pages)
+            merger.append(open(pdf, 'rb'))
+
+            if 'dialogue' in str(pdf) and not 'Summary' in str(bookmark) and not 'dialogue-vm.' in str(pdf) and not 'threeeasy' in str(pdf):
+                logger.info(' current part: %s', bookmark)
+                curr_part = merger.addBookmark(
+                    bookmark, curr_page, parent=None)
+            else:
+                merger.addBookmark(bookmark, curr_page, parent=curr_part)
 
         with open(self.output_file, "wb") as book:
             merger.write(book)
