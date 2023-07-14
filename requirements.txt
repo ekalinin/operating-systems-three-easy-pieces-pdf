@@ -1,4 +1,4 @@
 requests==2.27.1
-PyPDF2==1.26.0
+PyPDF2==3.0.0
 pdfminer.six==20200726
 beautifulsoup4==4.9.1
